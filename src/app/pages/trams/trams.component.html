@@ -1,0 +1,12 @@
+<p>trams works!</p>
+<div class="container">
+    <mat-card appearance="outlined" >
+        <mat-card-content class="vilik">
+            @for (vili of vilik; track $index) {
+                <button  mat-flat-button [ngStyle]="{'background-color': '#'+vili.route_color, 'color': '#'+vili.route_text_color}" 
+                (click)="openTram(vili.route_short_name)">{{vili.route_short_name}}</button>    
+            }
+        </mat-card-content>
+    </mat-card>
+    <router-outlet></router-outlet>
+</div>

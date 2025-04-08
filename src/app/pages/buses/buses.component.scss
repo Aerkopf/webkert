@@ -1,0 +1,10 @@
+
+mat-card{
+    max-width:auto;
+    margin-top: 30px;
+}
+.trolik, .buszok{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
