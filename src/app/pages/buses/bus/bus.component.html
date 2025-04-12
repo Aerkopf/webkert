@@ -30,7 +30,7 @@
                     <h2>Időpontok {{selectedStop.stop_name}} megállóban</h2>
                     @if(relevantStopTimes){
                         @for (item of relevantStopTimes; track $index) {
-                            @if($index > 0 && relevantStopTimes[$index]?.arrival_time?.slice(0,3) !== relevantStopTimes[$index-1]?.arrival_time?.slice(0,3) ){
+                            @if($index > 0 && relevantStopTimes[$index].arrival_time.slice(0,3) !== relevantStopTimes[$index-1].arrival_time.slice(0,3) ){
                                 <br>
                             }
                             <span>{{item.arrival_time | timeTable}}  </span>

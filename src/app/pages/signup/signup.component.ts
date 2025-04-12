@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormsModule, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +27,7 @@ import { User } from '../../shared/interfaces/user';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
   signUpForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -38,10 +38,22 @@ export class SignupComponent {
   isLoading = false;
   showForm = true;
   signupError = '';
+  users: User[] = [];
 
   constructor(private router:Router){}
 
+  ngOnInit(): void {
+    this.isLoading = false;
+    this.showForm = true;
+    
+  
+  }
+
   signup():void{
+
+    let data = localStorage.getItem('users');
+    this.users = data ? JSON.parse('users') : [];
+
     if(this.signUpForm.invalid){
       this.signupError = "Kérlek töltsön ki minden adatot!";
       return;
@@ -59,8 +71,10 @@ export class SignupComponent {
       password: this.signUpForm.value.password || ''
     };
 
-    console.log('Új felhasználó: ', newUser);
-    console.log('Form value:', this.signUpForm.value);
+    this.users.push(newUser);
+    data = JSON.stringify(this.users);
+    localStorage.setItem('users', data);
+    
 
     this.showForm = false;
     this.isLoading = true;

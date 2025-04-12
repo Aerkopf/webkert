@@ -62,7 +62,7 @@ export class BusesComponent implements OnInit{
   
 
   openBus(short_name:string, type:number){
-    this.router.navigateByUrl('/buses');
+    //this.router.navigateByUrl('/buses');
     this.router.navigateByUrl('buses/bus/'+short_name);
     if(type === 3){
       this.called_busz = true;
