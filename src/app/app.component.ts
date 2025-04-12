@@ -24,29 +24,30 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnChanges{
+export class AppComponent implements OnInit{
   title = 'SzegediMenetrendApp';
-
+  
 
   userLoggedIn : boolean = localStorage.getItem('isLoggedIn') === 'true';
   constructor(private router:Router){
 
   }
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
     this.userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
-  moveTo(path:String){
-    if(path !== "logout"){
-      this.router.navigateByUrl("/"+path);
-    } else {
-      localStorage.removeItem('isLoggedIn');
-      this.userLoggedIn = false;
-    }
+  moveTo(page:string):void{
+    this.router.navigateByUrl("/"+page);
   }
 
   onToggleSidenav(sidenav:MatSidenav){
     sidenav.open();
+  }
+
+  logout():void{
+    this.userLoggedIn = false;
+    localStorage.setItem('isLoggedIn', 'false');
+    window.location.href = '/home';
   }
 
 }

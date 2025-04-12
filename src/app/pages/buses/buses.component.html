@@ -1,11 +1,9 @@
-<p>buses works!</p>
-
     <div class="container">
         <mat-card appearance="outlined" >
             <mat-card-content class="trolik">
                 @for (troli of trolik; track $index) {
                     <button  mat-flat-button [ngStyle]="{'background-color': '#'+troli.route_color, 'color': '#'+troli.route_text_color}"
-                    (click)="openBus(troli.route_short_name, troli.route_type)">{{troli.route_short_name}}</button>    
+                    (click)="openBus(troli.route_short_name, troli.route_type)">{{troli.route_short_name}}</button> 
                 }
             </mat-card-content>
         </mat-card>
@@ -16,7 +14,7 @@
             <mat-card-content class="buszok">
                 @for (busz of buszok; track $index) {
                     <button  mat-flat-button [ngStyle]="{'background-color': '#'+busz.route_color, 'color': '#'+busz.route_text_color}"
-                     (click)="openBus(busz.route_short_name, busz.route_type)">{{busz.route_short_name}}</button>    
+                     (click)="openBus(busz.route_short_name, busz.route_type)">{{busz.route_short_name}}</button>   
                 }
             </mat-card-content>
         </mat-card>

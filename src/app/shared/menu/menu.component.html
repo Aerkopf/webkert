@@ -11,16 +11,25 @@
         <mat-icon matListItemIcon>tram</mat-icon>
         <span matListItemTitle>Villamosok</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="closeMenu()">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span matListItemTitle>Bejelentkezés</span>
-    </a>
-    <a mat-list-item routerLink="/signup" (click)="closeMenu()">
-        <mat-icon matListItemIcon>person_add</mat-icon>
-        <span matListItemTitle>Regisztráció</span>
-    </a>
-    <a mat-list-item routerLink="/home" (click)="closeMenu()">
-        <mat-icon matListItemIcon>logout</mat-icon>
-        <span matListItemTitle>Kijelentkezés</span>
-    </a>
+    @if(!userLoggedIn){
+        <a mat-list-item routerLink="/login" (click)="closeMenu()">
+            <mat-icon matListItemIcon>home</mat-icon>
+            <span matListItemTitle>Bejelentkezés</span>
+        </a>
+        <a mat-list-item routerLink="/signup" (click)="closeMenu()">
+            <mat-icon matListItemIcon>person_add</mat-icon>
+            <span matListItemTitle>Regisztráció</span>
+        </a>
+    }
+    @if(userLoggedIn){
+        <a mat-list-item routerLink="/saved" (click)="closeMenu()">
+            <mat-icon matListItemIcon>bookmark</mat-icon>
+            <span matListItemTitle>Mentett járatok</span>
+        </a>
+        <a mat-list-item routerLink="/home" (click)="logout()">
+            <mat-icon matListItemIcon>logout</mat-icon>
+            <span matListItemTitle>Kijelentkezés</span>
+        </a>
+    }
+    
 </mat-nav-list>

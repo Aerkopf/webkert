@@ -21,13 +21,5 @@ export class HomeComponent{
   constructor(){
 
   }
-  calendar = Calendar;
-  //stopTimes = StopTimes;
-  agency = Agency;
-  trips = Trips;
-  szam:number = 2;
-
-  katt(): void {
-    this.szam++;
-  }
+  
 }

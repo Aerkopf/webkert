@@ -1,12 +1,65 @@
-@if (bus) {
+<!--
+@if (tram) {
     <div >
         <mat-card>
             <mat-card-content>
-                <h2>{{ bus.route_short_name }}</h2>
-                <p>Útvonal: {{ bus.route_long_name }}</p>
-                <p>Azonosító: {{ bus.route_id }}</p>
+                <h2>{{ tram.route_short_name }}</h2>
+                <p>Útvonal: {{ tram.route_long_name }}</p>
+                <p>Azonosító: {{ tram.route_id }}</p>
                 <button mat-raised-button color="primary" (click)="back()">Bezárás</button>
             </mat-card-content>
         </mat-card>
     </div>
 }
+-->
+@if (tram) {
+    <div >
+        <mat-card>
+            <mat-card-content>
+                <h2>{{ tram.route_short_name }}</h2>
+                <p>Útvonal: {{ tram.route_long_name }}</p>
+                <mat-form-field> <!-- Megállók select -->
+                    <mat-label>Megállók</mat-label>
+                    <mat-select  (selectionChange)="refresh()" [(value)]="selectedStop">
+                        @for (item of stopsForTram; track $index) {
+                            <mat-option [value]="item[1]">{{item[1].stop_name}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button (click)="turn()">{{vegallomas}} irányába</button>
+                <mat-form-field> <!-- Hét napjai select -->
+                    <mat-label>Napok</mat-label>
+                    <mat-select  (selectionChange)="findTram()" [(value)]="selectedDayKey">
+                        @for (item of days; track $index) {
+                            <mat-option [value]="item[0]">{{item[1]}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="back()">Bezárás</button>
+                @if(userLoggedIn){
+                    <button mat-raised-button color="primary" (click)="saveRoute(tram.route_id)">Mentés</button>
+                } 
+
+                  @if(selectedStop){
+                    <h2>Időpontok {{selectedStop.stop_name}} megállóban</h2>
+                    @if(relevantStopTimes){
+                        @for (item of relevantStopTimes; track $index) {
+                            @if($index > 0 && relevantStopTimes[$index].arrival_time.slice(0,3) !== relevantStopTimes[$index-1].arrival_time.slice(0,3) ){
+                                <br>
+                            }
+                            <span>{{item.arrival_time | timeTable}}  </span>
+                        }
+                    }
+                    @if(relevantStopTimes.length < 1){
+                        <span>Az adott napon nem közlekedik a járat</span>
+                    }
+                  }
+                  
+            </mat-card-content>
+        </mat-card>
+        
+    </div>
+   
+    
+}
+

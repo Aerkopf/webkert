@@ -1,7 +1,7 @@
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
-    <app-menu [sidenav]="sidenav"></app-menu>
+    <app-menu [sidenav]="sidenav" [userLoggedIn]="userLoggedIn" (logoutEvent)="logout()"></app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
@@ -22,7 +22,8 @@
             <li><button mat-button (click)="moveTo('signup')">Regisztráció</button></li>
           }
           @if(userLoggedIn){
-            <li><button mat-button (click)="moveTo('logout')">Kijelentkezés</button></li>
+            <li><button mat-button (click)="moveTo('saved')">Mentett járatok</button></li>
+            <li><button mat-button (click)="logout()">Kijelentkezés</button></li>
           }
         </ul>
       </nav>

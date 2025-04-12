@@ -1,4 +1,4 @@
-export interface Calendar{
+export interface CalendarInterface{
     service_id: string;
     monday: number;
     tuesday: number;

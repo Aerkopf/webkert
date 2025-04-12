@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { PublicTransportStorageService } from '../../shared/services/public-transport-storage.service';
 
 @Component({
   selector: 'app-trams',
@@ -14,13 +15,13 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './trams.component.scss'
 })
 export class TramsComponent implements OnInit{
+  userLoggedIn : boolean = false;
   routes = Routes;
   vilik:Route[] = [];
 
   
 
   constructor(private router: Router){
-    
   }
   
   ngOnInit() : void{

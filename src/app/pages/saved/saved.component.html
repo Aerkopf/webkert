@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Elmentett járatok</h1>
+
+@if(savedTransport.length > 0){
+    <mat-card>
+        <mat-card-content class="content">
+            @for (vehicle of savedTransport; track $index) {
+                <mat-card>
+                    <mat-card-header>
+                        <button mat-flat-button [ngStyle]="{'background-color': '#'+vehicle.route_color,
+                            'color': '#'+vehicle.route_text_color}"
+                            (click)="moveTo(vehicle.route_short_name)">
+                                {{vehicle.route_short_name}}
+                        </button>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <button mat-raised-button color="primary" (click)="delete(vehicle.route_id)">Eltávolítás</button>
+                    </mat-card-content>
+                </mat-card>
+            }
+        </mat-card-content>
+    </mat-card>
+}
+@if (savedTransport.length === 0) {
+    <span>Nincsenek elmentett járatai!</span>
+}
+</div>
