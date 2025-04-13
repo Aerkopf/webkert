@@ -4,10 +4,27 @@
             <mat-card-title>Szegedi menetrend</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <span>Buszok megtekintése</span>
-            <button color="primary" mat-flat-button routerLink="/buses" >Buszok</button>
-            <span>Villamosok megtekintése</span>
-            <button color="warn" mat-flat-button routerLink="/trams">Villamosok</button>
+            <div class="buttons">
+                <span>Buszok megtekintése</span>
+                <button color="primary" mat-flat-button routerLink="/buses" >Buszok</button>
+            </div>
+            <div class="buttons">
+                <span>Villamosok megtekintése</span>
+                <button color="warn" mat-flat-button routerLink="/trams">Villamosok</button>
+            </div>
+            @if (!userLoggedIn) {
+                <div class="buttons">
+                    <span>Jelentkezz be a járatok elmentéséhez!</span>
+                    <button mat-flat-button color="primary" routerLink="/login">Bejelentkezés</button>
+                </div>
+            }
+            @if(userLoggedIn){
+                <div class="buttons">
+                    <span>Elmentett járatok</span>
+                    <button mat-flat-button color="primary" routerLink="/saved">Járatok</button>
+                </div>
+            }
+
         </mat-card-content>
     </mat-card>
 </div>

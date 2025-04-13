@@ -17,9 +17,16 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
+  userLoggedIn: boolean = false;
+
   constructor(){
 
   }
+
+  ngOnInit(): void {
+    this.userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  }
+
   
 }

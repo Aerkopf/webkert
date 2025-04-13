@@ -51,8 +51,9 @@ export class SignupComponent implements OnInit {
 
   signup():void{
 
+    this.signupError = '';
     let data = localStorage.getItem('users');
-    this.users = data ? JSON.parse('users') : [];
+    this.users = data ? JSON.parse(data) : [];
 
     if(this.signUpForm.invalid){
       this.signupError = "Kérlek töltsön ki minden adatot!";
@@ -70,7 +71,12 @@ export class SignupComponent implements OnInit {
       email: this.signUpForm.value.email || '',
       password: this.signUpForm.value.password || ''
     };
+    let userEmails = this.users.map(u => u.email);
 
+    if(userEmails.includes(newUser.email)){
+      this.signupError = "Ilyen email címmel már regisztráltak!";
+      return;
+    }
     this.users.push(newUser);
     data = JSON.stringify(this.users);
     localStorage.setItem('users', data);

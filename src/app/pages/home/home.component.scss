@@ -13,3 +13,16 @@ button{
     align-self: center;
     display: block;
 }
+mat-card-content{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.buttons{
+    margin-top:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
