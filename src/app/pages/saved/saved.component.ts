@@ -35,6 +35,7 @@ export class SavedComponent {
 
   deleteAll():void{
     this.publicTransportService.removeAll();
+    window.location.reload();
   }
 
   delete(id: number):void{
