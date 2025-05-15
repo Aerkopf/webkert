@@ -49,6 +49,9 @@ export class PublicTransportStorageService {
     }
   
 
+    
+
+
   removeVehicle(id: number): void{
     if(id){
       let vehicle = this.savedTransports.find(v => v.route_id === id);
@@ -62,7 +65,7 @@ export class PublicTransportStorageService {
     }
     this.refreshStorage();
   }
-
+  
   refreshStorage():void{
     localStorage.setItem('savedTransports', JSON.stringify(this.savedTransports));
   }

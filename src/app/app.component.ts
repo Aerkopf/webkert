@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
-  title = 'SzegediMenetrendApp';
+  title = 'szegedimenetrendapp';
   
 
   userLoggedIn : boolean = localStorage.getItem('isLoggedIn') === 'true';
