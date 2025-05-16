@@ -4,6 +4,7 @@ import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,15 +24,19 @@ export class MenuComponent implements OnInit{
   @Input() userLoggedIn: boolean = false;
   @Output() logoutEvent = new EventEmitter<void>();
 
-  
+  constructor(private authService:AuthService){
+
+  }
+
   ngOnInit(): void {
     this.userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
   logout(){
-    localStorage.setItem('isLoggedIn', 'false');
-    window.location.href = '/home';
-    this.closeMenu();
+    this.authService.signOut().then(() => {
+      this.logoutEvent.emit();
+      this.closeMenu();
+    })
   }
 
   closeMenu(){

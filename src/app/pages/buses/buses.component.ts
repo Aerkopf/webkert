@@ -1,4 +1,4 @@
-import { Component, Input, OnInit  } from '@angular/core';
+import { Component, Input, OnInit, Output  } from '@angular/core';
 import {Routes} from '../../../assets/constants/routes';
 import { Route } from '../../shared/interfaces/route';
 import { MatCardModule } from '@angular/material/card';
@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PublicTransportStorageService } from '../../shared/services/public-transport-storage.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -16,6 +17,9 @@ import { PublicTransportStorageService } from '../../shared/services/public-tran
   styleUrl: './buses.component.scss'
 })
 export class BusesComponent implements OnInit{
+
+  
+
   userLoggedIn = false;
   routes = Routes;
   buszok:Route[] = [];

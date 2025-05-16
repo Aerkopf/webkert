@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-import { Route } from '../../shared/interfaces/route';
 import { MatButtonModule } from '@angular/material/button';
-import { Agency } from '../../../assets/constants/agency';
-import { Calendar } from '../../../assets/constants/calendar';
-import { StopTimes } from '../../../assets/constants/stop_times';
-import { Trips } from '../../../assets/constants/trips';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 

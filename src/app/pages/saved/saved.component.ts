@@ -19,7 +19,9 @@ export class SavedComponent {
   firstCall: boolean = true;
 
   constructor(private router:Router, private publicTransportService: PublicTransportStorageService){
-    this.savedTransport = publicTransportService.getSavedTransport();
+    publicTransportService.getSavedTransport().then(data => {
+      this.savedTransport = data;
+    });
   }
 
   moveTo(id:string):void{
@@ -34,14 +36,14 @@ export class SavedComponent {
   }
 
   deleteAll():void{
-    this.publicTransportService.removeAll();
-    window.location.reload();
+    this.publicTransportService.removeAll().then(data => {window.location.reload();});
+    
   }
 
-  delete(id: number):void{
+  async delete(id: number):Promise<void>{
     if(id){
-      this.publicTransportService.removeVehicle(id);
+      await this.publicTransportService.removeVehicle(id).then(data => {window.location.reload();});
     }
-    window.location.reload();
+    
   }
 }

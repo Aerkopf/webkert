@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router, RouterOutlet, RouterLink } from '@angular/router';
 import { MenuComponent } from './shared/menu/menu.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,17 +26,24 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'szegedimenetrendapp';
   
 
   userLoggedIn : boolean = localStorage.getItem('isLoggedIn') === 'true';
-  constructor(private router:Router){
+  private authSubscription?: Subscription;
+
+  constructor(private router:Router, private authService:AuthService){
 
   }
   ngOnInit(): void {
-    this.userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this.authSubscription = this.authService.currentUser.subscribe( user => {
+      this.userLoggedIn = !!user;
+      localStorage.setItem('isLoggedIn', this.userLoggedIn ? 'true' : 'false');
+    }
+    );
   }
+
 
   moveTo(page:string):void{
     this.router.navigateByUrl("/"+page);
@@ -45,9 +54,14 @@ export class AppComponent implements OnInit{
   }
 
   logout():void{
-    this.userLoggedIn = false;
-    localStorage.setItem('isLoggedIn', 'false');
-    window.location.href = '/home';
+    this.authService.signOut().then(_ => {
+      window.location.reload();
+    });
+    
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription?.unsubscribe();
   }
 
 }

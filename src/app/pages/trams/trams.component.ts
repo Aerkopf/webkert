@@ -18,9 +18,7 @@ export class TramsComponent implements OnInit{
   userLoggedIn : boolean = false;
   routes = Routes;
   vilik:Route[] = [];
-
   
-
   constructor(private router: Router){
   }
   

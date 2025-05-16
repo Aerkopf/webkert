@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/szegedi-menetrend-app",
+            "outputPath": "dist/szegedimenetrendapp",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SzegediMenetrendApp:build:production"
+              "buildTarget": "szegedimenetrendapp:build:production"
             },
             "development": {
-              "buildTarget": "SzegediMenetrendApp:build:development"
+              "buildTarget": "szegedimenetrendapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "SzegediMenetrendApp:build"
+            "buildTarget": "szegedimenetrendapp:build"
           }
         },
         "test": {

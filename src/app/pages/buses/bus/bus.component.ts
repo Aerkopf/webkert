@@ -17,6 +17,7 @@ import { CalendarInterface } from '../../../shared/interfaces/calendar';
 import { PublicTransportStorageService } from '../../../shared/services/public-transport-storage.service';
 
 
+
 @Component({
   selector: 'app-bus',
   standalone: true,
@@ -72,9 +73,9 @@ export class BusComponent implements OnInit{
 
   
 
-  findBus():void {
+   findBus():void {
     //kapott e az URL-ben adatot
-    this.route.paramMap.subscribe(params => {
+     this.route.paramMap.subscribe(params => {
       const id = params.get('id'); //id = route_short_name
       this.calendar = Calendar.filter(c => c[this.selectedDayKey] === 1); //A nap kiválasztása után a kellő Calendar objektumok megszerzése
       const calendarServiceIds:string[] = this.calendar.map(c => c.service_id);  // A calendar változó alapján kigyűjtjük a service_id-kat;
